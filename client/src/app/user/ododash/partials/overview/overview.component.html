@@ -1,0 +1,125 @@
+<div class="bg-white p-5 mb-5 shadow-sm">
+    <h2 class="mb-3 text-sm font-bold text-gray-500 uppercase">Reduire un nouvel url</h2>
+    <shrink-input class="w-full" (dataUrl)="setUrl($event)"></shrink-input>
+    @if (url) {
+        <br>
+        @if(!url.error){
+          <shrink-output [url]="url"></shrink-output>
+        } @else{
+        <shrink-failed [url]="url"></shrink-failed>
+      } }
+      
+</div>
+
+
+<div *ngIf="error" class="bg-pink-100 text-pink-700 p-4">{{error}}</div>
+<div *ngIf="confirm" class="bg-green-100 text-green-700 p-4">URL supprime avec success</div>
+<div *ngIf="resultat" class="bg-blue-100 text-blue-700 p-5 flex justify-between">
+<span>{{resultat}}</span>
+
+<a (click)="delete(id,true)" class="font-bold cursor-pointer">Supprimer</a>
+</div>
+
+
+
+ <div *ngIf="true" class="bg-white p-3 mb-5 shadow-sm w-full">
+ <h2 class="mb-3 text-sm font-bold text-gray-500 uppercase">URLS</h2>
+
+ @if(!urls){
+  <div class="flex flex-col items-center justify-center">
+    <span class="loading loading-dots loading-lg"></span>
+  </div>
+  }@else {
+  
+  <div class="overflow-x-auto w-full">
+    <table class="table w-full">
+      <!-- head -->
+      <thead>
+        <tr>
+          <th class="hidden sm:inline-block">
+            <label>
+              <input type="checkbox" class="checkbox" />
+            </label>
+          </th>
+          <th>URLS</th>
+          <th class="hidden sm:inline-block">Active</th>
+          <th class="hidden sm:inline-block"></th>
+        </tr>
+      </thead>
+      <tbody>
+       
+        <tr *ngFor="let url of urls">
+          <th class="hidden sm:inline-block">
+            <label>
+              <input type="checkbox" class="checkbox" />
+            </label>
+          </th>
+          <td>
+            <div class="flex items-center gap-3">
+             
+              <div>
+                <div class="font-bold break-all"><a href="{{url.url}}">{{url.url}}</a></div>
+                <br>
+                <div class="text-xs opacity-50"><a href="{{url.former}}">{{url.former}}</a></div>
+
+                <div class="flex gap-5 flex-wrap mt-5 sm:hidden">
+                    <a href="{{url.url}}" class="text-blue-500 font-semibold"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                      </svg>
+                      </a>
+                    <a [routerLink]="['u','sam','url','edit',url.id]" title="Editer" class="text-green-500 font-semibold"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                      </svg>
+                      </a>
+                    <a href="" title="Desactiver" class="text-yellow-500 font-semibold"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                      </svg>
+                      </a>
+                    <a (click)="delete(url._id)" title="Supprimer" class="cursor-pointer text-red-500 font-semibold"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                      </svg>
+                      </a>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="hidden sm:inline-block">
+            <div>
+                <div class="flex gap-2 items-center"><span class="w-3 h-3 rounded-full bg-green-500 block"></span>Actif</div>
+                <div class="text-sm opacity-50 flex items-center gap-1"><span>{{url.visited}}</span> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                  </svg>
+                  </div>
+              </div>
+          </td>
+          <td class="hidden sm:inline-block">
+            <div class="flex gap-5 flex-wrap">
+                <a href="{{url.url}}" class="text-blue-500 font-semibold"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                  </svg>
+                  </a>
+                <a [routerLink]="['u','sam','url','edit',url.id]" title="Editer" class="text-green-500 font-semibold"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                  </svg>
+                  </a>
+                <a href="" title="Desactiver" class="text-yellow-500 font-semibold"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                  </a>
+                <a (click)="delete(url._id)" title="Supprimer" class="cursor-pointer text-red-500 font-semibold"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                  </svg>
+                  </a>
+            </div>
+          </td>
+          
+        </tr>
+     
+      </tbody>
+     
+    </table>
+  </div>
+}
+
+</div>

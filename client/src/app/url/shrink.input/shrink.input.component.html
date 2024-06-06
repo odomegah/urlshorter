@@ -1,0 +1,27 @@
+
+  <form [formGroup]="form" (submit)="onSubmit()">
+    <input
+      type="text"
+      formControlName="input"
+      placeholder="Tapez votre url ici..."
+      class="input input-sm border-gray-200 w-full"
+    />
+  </form>
+
+
+
+  @if(form.get('input')?.invalid && (form.get('input')?.dirty || form.get('input')?.touched) ){
+
+  <div
+    class="p-4 mt-5 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+    role="alert"
+  >
+    @if(form.get('input')?.errors?.['required']){Veillez entrer votre url}
+    @if(form.get('input')?.errors?.['pattern']){Votre url n'est pas pas valid}
+  </div>
+  }
+
+  @if (loading_w) {
+    <!-- <br> -->
+    <app-loader></app-loader>
+}

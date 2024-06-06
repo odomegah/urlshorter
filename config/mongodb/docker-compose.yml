@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  mongodb:
+    image: mongo:jammy
+    ports: 
+      - 27017:27017
+    container_name: "urlshorter"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: urlshorter
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    volumes:
+      - urlshorter:/data/db
+
+
+volumes:
+  urlshorter:

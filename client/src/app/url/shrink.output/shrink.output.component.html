@@ -1,0 +1,31 @@
+
+<shrink-success></shrink-success>
+
+<div class="relative overflow-x-auto bg-white">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+       
+        <tbody>
+            <tr class="bg-white border-b">
+                <td class="px-6 py-4 font-medium text-gray-900 break-all">
+                    <span class="text-xs text-gray-400">{{url.former}}</span>
+                </td>
+                
+                <td class="px-6 py-4"></td>
+            </tr>
+            
+            <tr class="bg-white border-b">
+                <td class="px-6 py-4 font-medium text-gray-900 break-all">
+                    <input class="border-none text-xs text-gray-600" [formControl]="current" type="text" id="inputCurrent">
+                </td>
+                
+                <td class="px-6 py-4">
+                   <span (click)="copier()" #copierEl class="text-indigo-500 cursor-pointer">Copier</span>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+<div class="text-red-600 bg-white p-2 flex justify-end text-sm">
+    <a href="/dashboard">Gerer vos url</a>
+</div>

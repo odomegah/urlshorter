@@ -1,0 +1,20 @@
+<div class="text-center mb-5">
+  <h1 class="text-2xl font-bold mb-5">URL SHORTER</h1>
+<!-- <div class="mx-10"> -->
+
+  <shrink-input (dataUrl)="setUrl($event)"></shrink-input>
+  <p class="text-xs mt-2 text-gray-400">
+    Reduire votre lien en creant un raccourcis plus esthetique.
+  </p>
+<!-- </div> -->
+</div>
+
+
+
+@if (url) {
+  <br>
+  @if(!url.error){
+    <shrink-output [url]="url"></shrink-output>
+  } @else{
+  <shrink-failed [url]="url"></shrink-failed>
+} }
