@@ -30,7 +30,7 @@ export const create = async (req, res) => {
     const newUrl = new Url({
       former,
       current: result,
-      url: process.env.BASEURL + result,
+      url: process.env.URL_BASE +"api/"+ result,
       visited: 0,
       createdAt: time,
       updatedAt: time,
@@ -71,7 +71,7 @@ export const urlvisite = async (req, res) => {
   try {
     const isUrl = await Url.findOne({ current: req.params.path });
     if (!isUrl) {
-      res.redirect("http://localhost:4200");
+      res.redirect(process.env.URL_BASE);
     }
     let v = isUrl.visited + 1;
     await Url.findOneAndUpdate({ current: req.params.path }, { visited: v });
